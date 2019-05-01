@@ -2,9 +2,6 @@
 
 BaseLine::BaseLine(int length, string _char, Position position)
 {
-	x_moving_len = 0;
-	y_moving_len = 0;
-
 	this->length = length;
 	this->_char = _char;
 	this->position = position;
@@ -16,6 +13,8 @@ BaseLine::BaseLine(int length, string _char, Position position)
 
 	move_by_x();
 	move_by_y();
+
+
 }
 BaseLine::~BaseLine()
 {

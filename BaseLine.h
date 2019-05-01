@@ -48,15 +48,15 @@ public:
 public:
 	enum X_position
 	{
-		left,
-		center,
-		right
+		left   = 1,
+		center = 2,
+		right  = 3
 	};
 	enum Y_position
 	{
-		top,
-		middle,
-		bottom
+		top    = 1,
+		middle = 2,
+		bottom = 3
 	};
 };
 
