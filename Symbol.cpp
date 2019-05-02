@@ -56,7 +56,7 @@ void Symbol::print()
 	//useless part
 	for (size_t line = 0; line < length+1; ++line)
 	{
-		for (size_t line_char = 0; line_char < symbol[line].size(); ++line_char)
+		for (size_t line_char = 0; line_char < length + 1; ++line_char)
 		{
 			cout << symbol[line][line_char];
 		}
