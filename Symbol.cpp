@@ -1,7 +1,7 @@
 #include "Symbol.h"
 Symbol::Symbol(vector<BaseLine*>& lines, int length)
 {
-	symbol.resize(length * 2);
+	symbol.resize(length);
 	init_empty_symbol();
 
 
@@ -22,20 +22,7 @@ void Symbol::make_up_symbol()
 		string type = lines[i]->get_type();
 		if (type == "horizontal")
 		{
-			set_horizontal_line_to_symbol_2d_vector(lines[i]);
-
-			for (size_t i = 0; i < symbol.size(); ++i)
-			{
-				if (!is_line_empty(i))
-				{
-					print_symbol_line(i);
-				}
-				else
-				{
-					cout << endl;
-				}
-			}
-			
+			set_horizontal_line_to_symbol_2d_vector(lines[i]);	
 		}
 	}
 }
@@ -55,25 +42,13 @@ void Symbol::set_horizontal_line_to_symbol_2d_vector(BaseLine* line)
 }
 void Symbol::print()
 {
-	for (size_t y = 0; y < symbol.size(); ++y)
+	for (size_t line = 0; line < symbol.size(); ++line)
 	{
-		for (size_t x = 0; x < symbol.size(); ++x)
+		for (size_t line_char = 0; line_char < symbol[line].size(); ++line_char)
 		{
-			cout << symbol[y][x];
+			cout << symbol[line][line_char];
 		}
 		cout << endl;
-	}
-}
-
-void Symbol::print_symbol_line(size_t symbol_line)
-{
-	if (symbol_line < symbol.size())
-	{
-		//print it
-		for (size_t i = 0; i < symbol[symbol_line].size(); ++i)
-		{
-			cout << symbol[symbol_line][i];
-		}
 	}
 }
 void Symbol::init_empty_symbol()
