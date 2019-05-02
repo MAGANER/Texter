@@ -2,6 +2,8 @@
 Symbol::Symbol(vector<BaseLine*>& lines, int length)
 {
 	symbol.resize(length * 2);
+	init_empty_symbol();
+
 
 	this->lines = lines;
 	this->length = length;
@@ -24,13 +26,13 @@ void Symbol::make_up_symbol()
 
 			for (size_t i = 0; i < symbol.size(); ++i)
 			{
-				if (symbol[i].size() < 0)
+				if (!is_line_empty(i))
 				{
-					cout << endl;
+					print_symbol_line(i);
 				}
 				else
 				{
-					print_symbol_line(i);
+					cout << endl;
 				}
 			}
 			
@@ -67,9 +69,43 @@ void Symbol::print_symbol_line(size_t symbol_line)
 {
 	if (symbol_line < symbol.size())
 	{
+		//print it
 		for (size_t i = 0; i < symbol[symbol_line].size(); ++i)
 		{
 			cout << symbol[symbol_line][i];
 		}
+	}
+}
+void Symbol::init_empty_symbol()
+{
+	vector<char> empty_line;
+	for (size_t i = 0; i < symbol.size(); ++i)
+	{
+		for (int n = 0; n < length; ++n)
+		{
+			empty_line.push_back(' ');
+		}
+		symbol[i] = empty_line;
+	}
+}
+bool Symbol::is_line_empty(size_t line_number)
+{
+	vector<char> line = symbol[line_number];
+	size_t empty_char_counter = 0;
+	for (size_t i = 0; i < line.size(); ++i)
+	{
+		if (line[i] == ' ')
+		{
+			empty_char_counter++;
+		}
+	}
+
+	if (empty_char_counter == line.size())
+	{
+		return true;
+	}
+	else
+	{
+		return false;
 	}
 }
