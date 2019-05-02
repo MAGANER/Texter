@@ -16,7 +16,6 @@ private:
 	vector<BaseLine*> lines;
 	vector<vector<char>> symbol;
 	void init_empty_symbol();
-	bool is_line_empty(size_t line_number);
 
 	void make_up_symbol(); // make 2d vector of lines
 	void set_horizontal_line_to_symbol_2d_vector(BaseLine* line);

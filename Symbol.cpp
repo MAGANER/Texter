@@ -72,24 +72,3 @@ void Symbol::init_empty_symbol()
 		symbol[i] = empty_line;	
 	}
 }
-bool Symbol::is_line_empty(size_t line_number)
-{
-	vector<char> line = symbol[line_number];
-	size_t empty_char_counter = 0;
-	for (size_t i = 0; i < line.size(); ++i)
-	{
-		if (line[i] == ' ')
-		{
-			empty_char_counter++;
-		}
-	}
-
-	if (empty_char_counter == line.size())
-	{
-		return true;
-	}
-	else
-	{
-		return false;
-	}
-}
