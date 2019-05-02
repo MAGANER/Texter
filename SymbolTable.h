@@ -24,6 +24,6 @@ public:
 	SymbolTable();
 	~SymbolTable();
 
-	vector<BaseLine*> generate_symbol_lines(string _char, int length);
+	vector<BaseLine*> generate_symbol_lines(string text_symbol,string _char ,int length);
 };
 

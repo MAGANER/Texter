@@ -8,25 +8,25 @@ SymbolTable::~SymbolTable()
 {
 }
 
-vector<BaseLine*> SymbolTable::generate_symbol_lines(string _char, int length)
+vector<BaseLine*> SymbolTable::generate_symbol_lines(string text_symbol, string _char, int length)
 {
 	vector<BaseLine*> symbol_lines;
-	vector<LineType> lines = table[_char];
+
+	vector<LineType> lines = table[text_symbol];
 	for (size_t i = 0; i < lines.size(); ++i)
-	{
-		BaseLine* line = NULL;
-		if (lines[i].type == "vertical")
-		{
-			line = new VerticalLine(length, _char, lines[i].position);
-		}
-		if (lines[i].type == "horizontal")
-		{
-			line = new HorizontalLine(length, _char, lines[i].position);
-		}
+	    {
+		   BaseLine* line = NULL;
+		   if (lines[i].type == "vertical")
+		   {
+			  line = new VerticalLine(length, _char, lines[i].position);
+		   }
+		   if (lines[i].type == "horizontal")
+		   {
+			  line = new HorizontalLine(length, _char, lines[i].position);
+		   }
 
-		symbol_lines.push_back(line);
-	}
-
+		   symbol_lines.push_back(line);
+	    }
 	return symbol_lines;
 }
 void SymbolTable::load_table()
