@@ -1,13 +1,12 @@
 #include "Symbol.h"
 Symbol::Symbol(vector<BaseLine*>& lines, int length)
 {
-	symbol.resize(length);
-	init_empty_symbol();
-
-
 	this->lines = lines;
 	this->length = length;
 	this->lines = lines;
+
+	symbol.resize(length*2);//the height of symbol
+	init_empty_symbol();
 
 	make_up_symbol();
 }
@@ -24,25 +23,38 @@ void Symbol::make_up_symbol()
 		{
 			set_horizontal_line_to_symbol_2d_vector(lines[i]);	
 		}
+		if (type == "vertical")
+		{
+			set_vertical_line_to_symbol_2d_vector(lines[i]);
+		}
 	}
 }
 void Symbol::set_horizontal_line_to_symbol_2d_vector(BaseLine* line)
 {
 	int x_pos = line->get_x_moving_len();
 	int y_pos = line->get_y_moving_len();
+	char symb = line->get_line().at(0);
 
-	vector<char> _line;
-	_line.resize(length*2);
-	for (int line_symb = x_pos; line_symb < _line.size(); ++line_symb)
+	for (int line_symb = x_pos; line_symb < length*2; ++line_symb)
 	{
-		char symb = line->get_line().at(0);
-		_line[line_symb] = symb;
+		symbol[y_pos][line_symb] = symb;
 	}
-	symbol[y_pos] = _line;
+}
+void Symbol::set_vertical_line_to_symbol_2d_vector(BaseLine* line)
+{
+	int x_pos = line->get_x_moving_len();
+	int y_pos = line->get_y_moving_len();
+	char symb = line->get_line().at(0);
+	for (int line_symb = y_pos; line_symb < length * 2; ++line_symb)
+	{
+		symbol[line_symb][x_pos] = symb;
+	}
 }
 void Symbol::print()
 {
-	for (size_t line = 0; line < symbol.size(); ++line)
+	//length+1,cos symbol is too big and there is
+	//useless part
+	for (size_t line = 0; line < length+1; ++line)
 	{
 		for (size_t line_char = 0; line_char < symbol[line].size(); ++line_char)
 		{
@@ -54,13 +66,10 @@ void Symbol::print()
 void Symbol::init_empty_symbol()
 {
 	vector<char> empty_line;
+	empty_line.resize(length * 2);
 	for (size_t i = 0; i < symbol.size(); ++i)
 	{
-		for (int n = 0; n < length; ++n)
-		{
-			empty_line.push_back(' ');
-		}
-		symbol[i] = empty_line;
+		symbol[i] = empty_line;	
 	}
 }
 bool Symbol::is_line_empty(size_t line_number)

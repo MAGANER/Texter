@@ -20,6 +20,7 @@ private:
 
 	void make_up_symbol(); // make 2d vector of lines
 	void set_horizontal_line_to_symbol_2d_vector(BaseLine* line);
+	void set_vertical_line_to_symbol_2d_vector(BaseLine* line);
 public:
 	Symbol(vector<BaseLine*>& lines, int length);
 
