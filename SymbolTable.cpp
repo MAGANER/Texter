@@ -1,8 +1,13 @@
 #include "SymbolTable.h"
 SymbolTable::SymbolTable()
 {
-	load_table();
-	parse_table();
+	int max_symbol = get_table_symbs_max_number();
+	for (int n = 0; n < max_symbol; ++n)
+	{
+		load_table("table/"+to_string(n) + ".txt");
+		parse_table();
+		table_values.clear();
+	}
 }
 SymbolTable::~SymbolTable()
 {
@@ -29,9 +34,9 @@ vector<BaseLine*> SymbolTable::generate_symbol_lines(string text_symbol, string 
 	    }
 	return symbol_lines;
 }
-void SymbolTable::load_table()
+void SymbolTable::load_table(string path)
 {
-	ifstream file("table.txt");
+	ifstream file(path);
 	string value;
 	while (!file.eof())
 	{
@@ -49,7 +54,6 @@ void SymbolTable::parse_table()
 	{
 		string value = table_values[i];  // get current value
 		unsigned int eq = value.find("="); // find pos of this symbol
-
 		// get symbol, it must be before '='
 		symbol = convert_char_to_string(value.at(eq - 1));
 
@@ -101,8 +105,6 @@ void SymbolTable::parse_table()
 		//put parsed data to table
 		table[symbol] = cleared_line_types;
 	}
-
-
 }
 string SymbolTable::convert_char_to_string(char value)
 {
@@ -115,4 +117,13 @@ string SymbolTable::convert_char_to_string(char value)
 int SymbolTable::convert_char_to_int(char value)
 {
 	return static_cast<int>(value);
+}
+int SymbolTable::get_table_symbs_max_number()
+{
+	ifstream file("table/max.txt");
+	int value;
+	file >> value;
+	file.close();
+
+	return value;
 }

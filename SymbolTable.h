@@ -15,8 +15,9 @@ class SymbolTable
 private:
 	map<string, vector<LineType>> table;
 	vector<string> table_values;
-	void load_table();
+	void load_table(string path);
 	void parse_table();
+	int get_table_symbs_max_number();
 
 	string convert_char_to_string(char value);
 	int convert_char_to_int(char value);
