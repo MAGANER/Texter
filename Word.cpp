@@ -24,7 +24,7 @@ void Word::print()
 }
 void Word::combine_word(int length)
 {
-	united_word.resize(length+1);
+	united_word.resize(length+2);
 	for (size_t symb = 0; symb < symbols.size(); ++symb)
 	{
 		add_symb_to_word(symb, length);
