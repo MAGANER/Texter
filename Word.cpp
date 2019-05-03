@@ -49,3 +49,17 @@ void Word::add_symb_to_word(size_t symbol_number, int length)
 		}
 	}
 }
+void Word::save(string file_path)
+{
+	ofstream file(file_path);
+	for (int line = 0; line < united_word.size(); ++line)
+	{
+		vector<char> current_line = united_word[line];
+		for (size_t _char = 0; _char < current_line.size(); ++_char)
+		{
+			file << current_line[_char];
+		}
+		file << endl;
+	}
+	file.close();
+}
