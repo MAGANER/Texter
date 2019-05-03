@@ -22,6 +22,7 @@ private:
 	void set_vertical_line_to_symbol_2d_vector(BaseLine* line);
 public:
 	Symbol(vector<BaseLine*>& lines, int length);
+	vector<vector<char>>& get_matrix();
 
 	void print();
 	~Symbol();

@@ -72,3 +72,7 @@ void Symbol::init_empty_symbol()
 		symbol[i] = empty_line;	
 	}
 }
+vector<vector<char>>& Symbol::get_matrix()
+{
+	return symbol;
+}
