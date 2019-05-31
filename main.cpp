@@ -1,10 +1,9 @@
-#include<conio.h>
 #include"App.h"
 
 int main()
 {
 	App app;
+	app.run();
 
-	_getch();
 	return 0;
 }
