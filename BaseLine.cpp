@@ -41,6 +41,7 @@ void BaseLine::move_by_x()
 	// compute length only
 	// becouse symbol will set it into 2d string array
 	// using length
+	
 	/*
 	for (size_t i = 0; i < moving_length; ++i)
 	{
@@ -72,7 +73,8 @@ void BaseLine::move_by_y()
 	// compute length only
 	// becouse symbol will set it into 2d string array
 	// using length
-	/*for (size_t i = 0; i < moving_length; ++i)
+	/*
+	for (size_t i = 0; i < moving_length; ++i)
 	{
 		characters.push_front("");
 	}
