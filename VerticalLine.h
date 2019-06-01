@@ -1,6 +1,6 @@
 #pragma once
 #include "BaseLine.h"
-
+#include"HorizontalLine.h"
 /*
  line that is printed verticaly, obviosly, i know
  to print in this way endl is used
