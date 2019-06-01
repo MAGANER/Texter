@@ -8,7 +8,11 @@ struct Position
 {
 	int x, y;
 };
-
+struct LineType
+{
+	Position position;
+	string type;
+};
 /*
  line is element that is used to
  make symbol.
@@ -33,6 +37,7 @@ public:
 	BaseLine(int length, string _char,Position position);
 	virtual ~BaseLine();
 	deque<string>& get_characters();
+	string get_line();
 	
 
 	int get_x_moving_len();

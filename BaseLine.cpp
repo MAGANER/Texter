@@ -91,6 +91,17 @@ deque<string>& BaseLine::get_characters()
 {
 	return characters;
 }
+string BaseLine::get_line()
+{
+	string line;
+	for (size_t i = 0; i < characters.size(); ++i)
+	{
+		line += characters[i];
+	}
+
+	return line;
+}
+
 string BaseLine::get_type()
 {
 	return type;
