@@ -18,6 +18,8 @@ struct Position
 class BaseLine
 {
 private:
+	int x_moving_len, y_moving_len;
+
 	void move_by_x();
 	void move_by_y();
 protected:
@@ -25,9 +27,17 @@ protected:
 	int length;
 	string _char;
 	Position position;
+
+	string type;
 public:
 	BaseLine(int length, string _char,Position position);
 	virtual ~BaseLine();
+	deque<string>& get_characters();
+	
+
+	int get_x_moving_len();
+	int get_y_moving_len();
+	string get_type();
 
 	virtual void print()=0;
 public:
