@@ -12,6 +12,7 @@ struct LineType
 {
 	Position position;
 	string type;
+	string size;//full or half(cut)
 };
 /*
  line is element that is used to
@@ -32,13 +33,16 @@ protected:
 	string _char; // used to make line
 	Position position;
 
-	string type; // horizontal or vertical or 
+	string type; // horizontal or vertical or diagonal
+	string size;// full or half
 public:
 	BaseLine(int length, string _char,Position position);
 	virtual ~BaseLine();
 	deque<string>& get_characters();
 	string get_line();
 	
+	string get_size();
+	void set_size(string value);
 
 	int get_x_moving_len();
 	int get_y_moving_len();

@@ -83,3 +83,13 @@ string BaseLine::get_type()
 {
 	return type;
 }
+
+
+string BaseLine::get_size()
+{
+	return size;
+}
+void BaseLine::set_size(string value)
+{
+	size = value;
+}
