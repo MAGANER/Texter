@@ -3,8 +3,9 @@ Symbol::Symbol(vector<BaseLine*>& lines, int length)
 {
 	this->lines = lines;
 	this->length = length;
-	this->lines = lines;
 
+
+	//init matrix
 	symbol.resize(length*2);//the height of symbol
 	init_empty_symbol();
 
@@ -34,8 +35,10 @@ void Symbol::set_horizontal_line_to_symbol_2d_vector(BaseLine* line)
 	int x_pos = line->get_x_moving_len();
 	int y_pos = line->get_y_moving_len();
 	char symb = line->get_line().at(0);
+	string size = line->get_size();
 
-	for (int line_symb = x_pos; line_symb < length*2; ++line_symb)
+	int cycle_limit = compute_line_length(size);
+	for (int line_symb = x_pos; line_symb < cycle_limit; ++line_symb)
 	{
 		symbol[y_pos][line_symb] = symb;
 	}
@@ -45,7 +48,10 @@ void Symbol::set_vertical_line_to_symbol_2d_vector(BaseLine* line)
 	int x_pos = line->get_x_moving_len();
 	int y_pos = line->get_y_moving_len();
 	char symb = line->get_line().at(0);
-	for (int line_symb = y_pos; line_symb < length * 2; ++line_symb)
+	string size = line->get_size();
+	
+	int cycle_limit = compute_line_length(size);
+	for (int line_symb = y_pos; line_symb < cycle_limit; ++line_symb)
 	{
 		symbol[line_symb][x_pos] = symb;
 	}
@@ -75,4 +81,16 @@ void Symbol::init_empty_symbol()
 vector<vector<char>>& Symbol::get_matrix()
 {
 	return symbol;
+}
+
+int Symbol::compute_line_length(string size)
+{
+	if (size == "half")
+	{
+		return length/2;
+	}
+	if (size == "full")
+	{
+		return length * 2;
+	}
 }
