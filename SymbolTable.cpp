@@ -2,6 +2,8 @@
 SymbolTable::SymbolTable()
 {
 	int max_symbol = get_table_symbs_max_number();
+
+	//set up table
 	for (int n = 0; n < max_symbol; ++n)
 	{
 		load_table("table/"+to_string(n) + ".txt");
@@ -36,6 +38,7 @@ vector<BaseLine*> SymbolTable::generate_symbol_lines(string text_symbol, string 
 }
 void SymbolTable::load_table(string path)
 {
+	//just load data till the file end
 	ifstream file(path);
 	string value;
 	while (!file.eof())
