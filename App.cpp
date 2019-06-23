@@ -114,7 +114,6 @@ void App::create_word()
 {
 	for (size_t i = 0; i < text_to_convert.size(); ++i)
 	{
-
 		String str(text_to_convert[i]);
 		string standart_str = str.toAnsiString();
 		vector<BaseLine*> lines = table.generate_symbol_lines(standart_str, text_symbol, length);
