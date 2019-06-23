@@ -16,8 +16,8 @@ struct LineType
 /*
  line is element that is used to
  make symbol.
- there are 2 kinds of lines:
- vertical and horizontal
+ there are 3 kinds of lines:
+ vertical and horizontal and ...
 */
 class BaseLine
 {
@@ -28,11 +28,11 @@ private:
 	void move_by_y();
 protected:
 	deque<string> characters;
-	int length;
-	string _char;
+	int length; // number of characterss
+	string _char; // used to make line
 	Position position;
 
-	string type;
+	string type; // horizontal or vertical or 
 public:
 	BaseLine(int length, string _char,Position position);
 	virtual ~BaseLine();

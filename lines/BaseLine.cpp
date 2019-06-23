@@ -6,11 +6,15 @@ BaseLine::BaseLine(int length, string _char, Position position)
 	this->_char = _char;
 	this->position = position;
 
+
+	//create line of taken length
 	for (size_t i = 0; i < length; ++i)
 	{
 		characters.push_back(_char);
 	}
 
+
+	//compute position of line
 	move_by_x();
 	move_by_y();
 }
@@ -20,7 +24,6 @@ BaseLine::~BaseLine()
 void BaseLine::move_by_x()
 {
 	int moving_length = 0;
-	string move_str = "";
 	switch (position.x)
 	{
 	case X_position::left:
@@ -34,21 +37,6 @@ void BaseLine::move_by_x()
 		break;
 	}
 	x_moving_len = moving_length;
-
-	// compute length only
-	// becouse symbol will set it into 2d string array
-	// using length
-	
-	/*
-	for (size_t i = 0; i < moving_length; ++i)
-	{
-		move_str += " ";
-	}
-	for (size_t i = 0; i < characters.size(); ++i)
-	{
-		characters[i].insert(0, move_str);
-	}
-	*/
 }
 void BaseLine::move_by_y()
 {
@@ -66,16 +54,6 @@ void BaseLine::move_by_y()
 		break;
 	}
 	y_moving_len = moving_length;
-
-	// compute length only
-	// becouse symbol will set it into 2d string array
-	// using length
-	/*
-	for (size_t i = 0; i < moving_length; ++i)
-	{
-		characters.push_front("");
-	}
-	*/
 }
 int  BaseLine::get_x_moving_len()
 {
