@@ -31,6 +31,7 @@ vector<BaseLine*> SymbolTable::generate_symbol_lines(string text_symbol, string 
 		   {
 			  line = new HorizontalLine(length, _char, lines[i].position);
 		   }
+		   line->set_size(lines[i].size);
 
 		   symbol_lines.push_back(line);
 	    }
@@ -81,14 +82,25 @@ void SymbolTable::parse_table()
 				l_type.type = "horizontal";
 			}
 			
+			//second, get x position
 			char x_pos = value[counter + 1];
 			string str_x_pos = convert_char_to_string(x_pos);
 			l_type.position.x = atoi(str_x_pos.c_str());
 
-
+			//third, get y position
 			char y_pos = value[counter + 2];
 			string str_y_pos = convert_char_to_string(y_pos);
 			l_type.position.y = atoi(str_y_pos.c_str());
+
+			//fourth, get size(full line or only half)
+			if (value[counter + 3] == 'c')
+			{
+				l_type.size = "half";
+			}
+			if (value[counter + 3] == 'f')
+			{
+				l_type.size = "full";
+			}
 
 			line_types.push_back(l_type);
 			++counter;
