@@ -31,6 +31,16 @@ vector<BaseLine*> SymbolTable::generate_symbol_lines(string text_symbol, string 
 		   {
 			  line = new HorizontalLine(length, _char, lines[i].position);
 		   }
+		   if (lines[i].type == "l_diagonal")
+		   {
+			   line = new DiagonalLine(length, _char, lines[i].position);
+			   line->set_type(lines[i].type);
+		   }
+		   if (lines[i].type == "r_diagonal")
+		   {
+			   line = new DiagonalLine(length, _char, lines[i].position);
+			   line->set_type(lines[i].type);
+		   }
 		   line->set_size(lines[i].size);
 
 		   symbol_lines.push_back(line);
@@ -81,6 +91,14 @@ void SymbolTable::parse_table()
 			{
 				l_type.type = "horizontal";
 			}
+			if (value[counter] == 'd')
+			{
+				l_type.type = "l_diagonal";
+			}
+			if (value[counter] == 'D')
+			{
+				l_type.type = "r_diagonal";
+			}
 			
 			//second, get x position
 			char x_pos = value[counter + 1];
@@ -111,7 +129,11 @@ void SymbolTable::parse_table()
 		for (size_t i = 0; i < line_types.size(); ++i)
 		{
 			LineType l_type = line_types[i];
-			if (l_type.type == "vertical" || l_type.type == "horizontal")
+			bool correct_type = l_type.type == "vertical"   ||
+				                l_type.type == "horizontal" ||
+				                l_type.type == "l_diagonal" ||
+				                l_type.type == "r_diagonal";
+			if (correct_type)
 			{
 				cleared_line_types.push_back(l_type);
 			}

@@ -1,6 +1,7 @@
 #pragma once
 #include"lines/VerticalLine.h"
 #include"lines/HorizontalLine.h"
+#include"lines/DiagonalLine.h"
 #include<map>
 #include<vector>
 #include<fstream>
