@@ -22,11 +22,19 @@ void Symbol::make_up_symbol()
 		string type = lines[i]->get_type();
 		if (type == "horizontal")
 		{
-			set_horizontal_line_to_symbol_2d_vector(lines[i]);	
+			set_horizontal_line_to_symbol_2d_vector(lines[i]);
 		}
 		if (type == "vertical")
 		{
 			set_vertical_line_to_symbol_2d_vector(lines[i]);
+		}
+		if (type == "l_diagonal")
+		{
+			set_left_diagonal_line_to_symbol_2d_vector(lines[i]);
+		}
+		if (type == "r_diagonal")
+		{
+			//set_right_diagonal_line_to_symbol_2d_vector(lines[i]);
 		}
 	}
 }
@@ -38,7 +46,8 @@ void Symbol::set_horizontal_line_to_symbol_2d_vector(BaseLine* line)
 	string size = line->get_size();
 
 	int cycle_limit = compute_line_length(size);
-	for (int line_symb = x_pos; line_symb < cycle_limit; ++line_symb)
+	int len = cycle_limit + x_pos; // x_pos is a start, cycle limit is end
+	for (int line_symb = x_pos; line_symb < len; ++line_symb)
 	{
 		symbol[y_pos][line_symb] = symb;
 	}
@@ -49,13 +58,37 @@ void Symbol::set_vertical_line_to_symbol_2d_vector(BaseLine* line)
 	int y_pos = line->get_y_moving_len();
 	char symb = line->get_line().at(0);
 	string size = line->get_size();
-	
 	int cycle_limit = compute_line_length(size);
-	for (int line_symb = y_pos; line_symb < cycle_limit; ++line_symb)
+	int len = cycle_limit + y_pos; // y_pos is a start, cycle limit is end
+	for (int line_symb = y_pos; line_symb < len; ++line_symb)
 	{
 		symbol[line_symb][x_pos] = symb;
 	}
 }
+void Symbol::set_left_diagonal_line_to_symbol_2d_vector(BaseLine* line)
+{
+	int x_pos = line->get_x_moving_len();
+	int y_pos = line->get_y_moving_len();
+	char symb = line->get_line().at(0);
+	string size = line->get_size();
+	int cycle_limit = compute_line_length(size);
+	int y_len = cycle_limit + y_pos; // y_pos is a start, cycle limit is end
+	int x_len = cycle_limit + x_pos; // the same
+
+	int y_counter = y_pos;
+	int x_counter = x_pos;
+	while (y_counter < y_len && x_counter < x_len)
+	{
+		symbol[y_counter][x_counter] = symb;
+		++y_counter;
+		++x_counter;
+	}
+}
+void Symbol::set_right_diagonal_line_to_symbol_2d_vector(BaseLine* line)
+{
+	//TODO
+}
+
 void Symbol::print()
 {
 	//length+1,cos symbol is too big and there is

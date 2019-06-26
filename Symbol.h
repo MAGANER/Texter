@@ -1,6 +1,7 @@
 #pragma once
 #include<iostream>
 #include<vector>
+#include<algorithm>
 using namespace std;
 
 #include"lines/BaseLine.h"
@@ -23,6 +24,8 @@ private:
 	void make_up_symbol(); // make 2d vector of lines
 	void set_horizontal_line_to_symbol_2d_vector(BaseLine* line);
 	void set_vertical_line_to_symbol_2d_vector(BaseLine* line);
+	void set_left_diagonal_line_to_symbol_2d_vector(BaseLine* line);
+	void set_right_diagonal_line_to_symbol_2d_vector(BaseLine* line);
 
 	int compute_line_length(string size);
 public:
