@@ -47,6 +47,7 @@ public:
 	int get_x_moving_len();
 	int get_y_moving_len();
 	string get_type();
+	void set_type(string value);
 
 	virtual void print()=0;
 public:
